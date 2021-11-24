@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-lgucvs01Main<lgucvs01>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.bluescript.demo.lgucvs01Main",
+            "projectName": "lgucvs01",
+            "args": ""
+        }
+    ]
+}
