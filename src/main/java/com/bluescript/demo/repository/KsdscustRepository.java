@@ -6,5 +6,4 @@ import org.springframework.data.repository.CrudRepository;
 @Repository
 public interface KsdscustRepository extends CrudRepository<ksdsCustEntity, Long> {
 
-    void save(Long customerNumLong);
 }

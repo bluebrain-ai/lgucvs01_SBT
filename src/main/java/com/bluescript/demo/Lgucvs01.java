@@ -24,6 +24,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
 import com.bluescript.demo.repository.KsdscustRepository;
+import com.bluescript.demo.repository.ksdsCustEntity;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -116,7 +118,8 @@ public class Lgucvs01 {
         try {
             wsCustomerArea = ksdscust.findById(dfhcommarea.getCaCustomerNum()).get().getCustomerArea();
         } catch (Exception e) {
-            log.error("No Record Found");
+
+            log.error("No Record Found" + e.getLocalizedMessage() + " " + e.getMessage());
             wsResp = 1;
         }
 
@@ -129,15 +132,16 @@ public class Lgucvs01 {
 
         }
         try {
-            ksdscust.save(Long.valueOf(dfhcommarea.getCaCustomerNum()));
+            ksdsCustEntity ksds = new ksdsCustEntity(dfhcommarea.getCaCustomerNum(), dfhcommarea.toString());
+            ksdscust.save(ksds);
             /* update findBy first and then use save previous read is with update */} catch (Exception e) {
 
-            log.error("No Record Found");
+            log.error("No Record Found" + e.getLocalizedMessage() + " " + e.getMessage());
             wsResp = 1;
 
         }
 
-        if (wsResp > 1) {
+        if (wsResp > 0) {
             dfhcommarea.setCaReturnCode(82);
             writeErrorMessage();
             log.error("Error code :, LGV2");
@@ -147,7 +151,7 @@ public class Lgucvs01 {
         }
 
         log.debug("Method mainline completed..");
-        return new ResponseEntity<>(dfhcommarea,HttpStatus.OK);
+        return new ResponseEntity<>(dfhcommarea, HttpStatus.OK);
     }
 
     public void writeErrorMessage() {

@@ -3,10 +3,12 @@ package com.bluescript.demo.repository;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
@@ -16,12 +18,14 @@ import lombok.RequiredArgsConstructor;
 
 @Data
 @RequiredArgsConstructor
+@AllArgsConstructor
 public class ksdsCustEntity {
 
     @Id
-    @Column(name = "CUSTOMERNUM")
+    @Column(name = "CUSTOMERNUMBER")
     private long customerNum;
-    @Column(name = "CUSTOMERAREA")
+    @Lob
+    @Column(name = "CUSTOMERDATA")
     private String customerArea;
 
 }
